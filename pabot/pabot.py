@@ -178,13 +178,13 @@ def _run(cmd, stderr, stdout, suite_name, verbose, pool_id):
 def _wait_for_return_code(process, suite_name, pool_id):
     rc = None
     elapsed = 0
-    ping_time = ping_interval = 150
+    ping_time = ping_interval = 30
     while rc is None:
         rc = process.poll()
         time.sleep(0.1)
         elapsed += 1
         if elapsed == ping_time:
-            ping_interval += 50
+            ping_interval += 0
             ping_time += ping_interval
             _write_with_id(process, pool_id, 'still running %s after %s seconds '
                                              '(next ping in %s seconds)'
